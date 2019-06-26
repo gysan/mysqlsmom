@@ -4,12 +4,24 @@ STREAM = "BINLOG"  # "BINLOG" or "INIT"
 SERVER_ID = 99
 SLAVE_UUID = __name__
 
+# 一次同步 BULK_SIZE 条数据到elasticsearch，不设置该配置项默认为1
+BULK_SIZE = 1
+
 BINLOG_CONNECTION = {
     'host': '127.0.0.1',
     'port': 3306,
     'user': 'root',
     'passwd': ''
 }
+
+# redis存储上次同步位置等信息
+REDIS = {
+    "host": "127.0.0.1",
+    "port": 6379,
+    "db": 0,
+    "password": "password",  # 不需要密码则注释或删掉该行
+}
+
 
 NODES = [{"host": "127.0.0.1", "port": 9200}]
 
@@ -38,3 +50,6 @@ TASKS = [
         ]
     }
 ]
+
+# CUSTOM_ROW_HANDLERS = "./my_handlers.py"
+# CUSTOM_ROW_FILTERS = "./my_filters.py"
